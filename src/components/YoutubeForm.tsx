@@ -23,7 +23,9 @@ export default function YoutubeForm() {
   }
 
   function handleSubmit(values: FormValues) {
-    console.log(values)
+    setTimeout(() => {
+      console.log(values)
+    }, 1000)
   }
 
   const validationSchema = Yup.object({
@@ -45,6 +47,7 @@ export default function YoutubeForm() {
             <label htmlFor={'name'}>Name</label>
             <Field name={'name'} type={'text'}/>
             <ErrorMessage name={'name'} component="div" className="error-message"/>
+            {formik.touched.name ? <> {/*console.log('send req to the server to check the username')*/} </> : ''}
             <label htmlFor={'email'}>E-mail</label>
             <Field name={'email'} type={'email'}/>
             <ErrorMessage name={'email'} component="div" className="error-message"/>
@@ -75,7 +78,7 @@ export default function YoutubeForm() {
                 )}
               </FieldArray>
             </div>
-            <button type={'submit'}>Submit</button>
+            <button disabled={formik.isSubmitting} type={'submit'}>Submit</button>
             <button type={'button'} onClick={() => formik.setValues({
               name: 'Auron',
               email: 'Auron@gmail.com',
@@ -83,7 +86,17 @@ export default function YoutubeForm() {
               phoneNumbers: [''],
               social: {facebook: 'Auronvila'}
             })}>
-              Change field valuesz
+              Change field values
+            </button>
+            <button
+              onClick={() => {
+                // this can be used when the user blurs out of the input, and we can check if the username the user typed is unique
+                formik.validateField('name')
+                formik.setFieldTouched('name')
+              }}
+              type={'button'}
+            >
+              trigger field validation
             </button>
           </Form>
         )}

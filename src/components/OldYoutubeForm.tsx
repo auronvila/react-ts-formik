@@ -15,7 +15,8 @@ export default function OldYoutubeForm() {
     email: ''
   }
 
-  function handleSubmit(values: FormValues) {
+  function handleSubmit(values: FormValues, onSubmitProps) {
+    console.log(onSubmitProps)
     console.log(values)
   }
 
