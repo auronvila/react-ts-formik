@@ -32,9 +32,10 @@ export default function YoutubeForm() {
     phoneNumbers: ['343555654']
   }
 
-  function handleSubmit(values: FormValues) {
+  function handleSubmit(values: FormValues,onSubmitProps) {
     setTimeout(() => {
       console.log(values)
+    onSubmitProps.setSubmitting(false)
     }, 1000)
   }
 
