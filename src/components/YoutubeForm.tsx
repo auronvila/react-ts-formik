@@ -36,6 +36,7 @@ export default function YoutubeForm() {
     setTimeout(() => {
       console.log(values)
     onSubmitProps.setSubmitting(false)
+      onSubmitProps.resetForm()
     }, 1000)
   }
 
