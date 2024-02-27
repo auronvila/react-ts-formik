@@ -22,6 +22,16 @@ export default function YoutubeForm() {
     phoneNumbers: ['']
   }
 
+  const savedData = {
+    name: 'AURON',
+    channel: 'AURONPLAY',
+    email: 'auron@gmail.com',
+    social: {
+      facebook: 'none'
+    },
+    phoneNumbers: ['343555654']
+  }
+
   function handleSubmit(values: FormValues) {
     setTimeout(() => {
       console.log(values)
@@ -40,8 +50,11 @@ export default function YoutubeForm() {
 
   return (
     <>
-
-      <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        enableReinitialize
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={handleSubmit}>
         {(formik: FormikProps<FormValues>) => (
           <Form>
             <label htmlFor={'name'}>Name</label>
@@ -97,6 +110,14 @@ export default function YoutubeForm() {
               type={'button'}
             >
               trigger field validation
+            </button>
+            <button
+              onClick={() => {
+                formik.setValues(savedData)
+              }}
+              type={'button'}
+            >
+              load saved data
             </button>
           </Form>
         )}
