@@ -4,11 +4,13 @@ import FormikControl from "./FormikControl.tsx";
 
 export default function FormikContainer() {
   const validationSchema = Yup.object({
-    email: Yup.string().required()
+    email: Yup.string().required(),
+    description: Yup.string().required()
   })
 
   const initialValues = {
-    email: ''
+    email: '',
+    description: ''
   }
 
   function onSubmit(values) {
@@ -21,6 +23,7 @@ export default function FormikContainer() {
         {(formik: FormikProps<typeof initialValues>) => (
           <Form>
             <FormikControl control={'input'} label={'email'} name={'email'} type={'email'}/>
+            <FormikControl control={'textarea'} label={'description'} name={'description'} type={'text'}/>
             <button type={'submit'}>
               Submit
             </button>
